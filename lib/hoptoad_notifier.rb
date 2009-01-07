@@ -140,6 +140,8 @@ module HoptoadNotifier
       if base.instance_methods.include? 'rescue_action_in_public' and !base.instance_methods.include? 'rescue_action_in_public_without_hoptoad'
         base.send(:alias_method, :rescue_action_in_public_without_hoptoad, :rescue_action_in_public)
         base.send(:alias_method, :rescue_action_in_public, :rescue_action_in_public_with_hoptoad)
+        base.send :protected, :rescue_action_in_public, :rescue_action_in_public_with_hoptoad, :rescue_action_in_public_without_hoptoad
+        base.send :protected, :notify_hoptoad, :inform_hoptoad
       end
     end
     
